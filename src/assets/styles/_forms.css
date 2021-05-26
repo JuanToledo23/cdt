@@ -1,0 +1,12 @@
+.input-buscar {
+    border-top: unset;
+    border-left: unset;
+    border-right: unset;
+    outline: none;
+    border-bottom: 1px solid;
+    margin-left: 5px;
+}
+
+.logo-principal {
+    width: 200px;
+}

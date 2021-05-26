@@ -1,0 +1,15 @@
+.contenedor-principal {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.contenedor-componentes {
+    margin: 0px 30px;
+    background-color: #787878;
+    
+}
+
+.contenedor-buscador {
+    padding: 55px 70px;
+    padding-top: 160px;
+}

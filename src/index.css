@@ -1,13 +1,24 @@
+@import url('./assets/styles/_fonts.css');
+@import url('./assets/styles/_header.css');
+@import url('./assets/styles/_contenedores.css');
+@import url('./assets/styles/_titulos.css');
+@import url('./assets/styles/_utilidades.css');
+@import url('./assets/styles/_forms.css');
+@import url('./assets/styles/_grid.css');
+@import url('./assets/styles/_principal.css');
+@import url('./assets/styles/_tablas.css');
+@import url('./assets/styles/_busquedaCliente.css');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Avenir_Next_Regular';
+  font-weight: normal;
+  font-style: normal;
+  color: #333333;
+  font-size: 14px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  color: unset;
+  text-decoration: unset;
 }

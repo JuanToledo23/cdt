@@ -1,0 +1,87 @@
+.menu-hamburguesa {
+    width: 35px;
+}
+
+.controles {
+    width: 160px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controles > img {
+    width: 24px;
+}
+
+.controles > img:nth-child(3) {
+    transform: rotate(180deg);
+}
+
+.verde {
+    color: #00663f;
+}
+
+.rojo {
+    color: #f50007;
+}
+
+.titulo-header {
+    font-family: 'AvenirNextLTPro-Medium';
+    font-size: 30px;
+}
+
+.informacion {
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+}
+
+.contenedor-header {
+    height: 70px;
+    padding: 0px 33px;
+}
+
+.texto-nombre {
+    font-size: 13px;
+    font-family: 'AvenirNextLTPro-Medium';
+}
+
+.texto-asesor {
+    color: #01b38d;
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.texto-fecha {
+    font-size: 9px;
+}
+
+.texto-sucursal {
+    font-size: 10px;
+}
+
+.contenedor-titulo {
+    border-top: solid 1px #efefef;
+    padding: 0px 30px;
+    height: 25px;
+}
+
+.shadow {
+    box-shadow: 1px 9px 29px -12px rgba(125,125,125,0.75);
+    box-shadow: 1px 9px 29px -12px rgb(125 125 125 / 75%);
+    z-index: 20;
+    position: fixed;
+    width: 100%;
+}
+
+.user-pic {
+    display: block;
+    position: relative;
+    width: 36px;
+    height: 36px;
+    margin: 0 0 0 10px;
+    background: #FFFFFF no-repeat center center;
+    border: solid 1px #666666;
+    border-radius: 50%;
+    background-size: 80%;
+}
