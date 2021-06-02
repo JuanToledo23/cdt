@@ -8,6 +8,7 @@
 @import url('./assets/styles/_principal.css');
 @import url('./assets/styles/_tablas.css');
 @import url('./assets/styles/_busquedaCliente.css');
+@import url('./assets/styles/_input.css');
 
 body {
   margin: 0;

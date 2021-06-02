@@ -724,3 +724,14 @@ input.u-desac {
 .u-bg-b {
     background-color: #fff;
 }
+
+.u-fz-16 {
+    font-size: 16px;
+}
+.u-fz-18 {
+    font-size: 18px;
+}
+
+.u-txt-verde {
+    color: #006341;
+}

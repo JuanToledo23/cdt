@@ -1,0 +1,126 @@
+.input-bracket {
+    background-image:   linear-gradient(#333333, #333333),
+                        linear-gradient(#333333, #333333);
+    background-repeat: no-repeat;
+    background-size: 1px 3px;
+    background-position: bottom left, bottom right;
+    border-bottom: 1px solid #333333;
+    padding: 2px 5px;
+
+}
+
+.input{
+    display: flex;
+    align-items: center;
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.input__nombre{
+    margin-right: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.input__small{
+    font-style: italic;
+    font-size: 14px;
+}
+
+.input-codigo{
+    border: 1px solid #33333357;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.input-codigo--json{
+    height: 15rem;
+    overflow: auto;
+}
+
+.input-bracket-red {
+    background-image: linear-gradient(#ff0000, #ff0000), linear-gradient(#ff0000, #ff0000) !important;
+    border-bottom: 1px solid #ff0000 !important;
+}
+
+.input-bracket__parrafo{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: inline;
+}
+
+.input-bracket__input{
+    border: none;
+    font-size: 13px;
+    min-width: 11rem;
+}
+
+.input-bracket__input:focus{
+    outline: none;
+}
+
+.input-bracket__input::placeholder{
+    color: #333333;
+}
+
+.input-bracket__ico{
+    width: 1.5rem;
+    cursor: pointer;
+}
+
+.input-file{
+    position: relative;
+    margin: 0 2rem;
+}
+
+.input-file__etiqueta{
+    position: absolute;
+}
+
+.input_file__input{
+    opacity: 0;
+    max-width: 10rem;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.input-bracket__textarea{
+    border: none;
+    font-size: 13px;
+    min-width: 10rem;
+    margin-bottom: -7px;
+    background-color: transparent;
+
+}
+
+.input-bracket--100 {
+    width: 100%;
+}
+
+.input-bracket__principal {
+    border: none;
+    font-size: 32px;
+    outline: none;
+    font-family: 'Avenir_Next_Regular';
+    width: 99%;
+}
+
+.input-bracket__buscar {
+    padding-left: 66px;
+    position: relative;
+}
+
+.input-bracket__buscar img {
+    position: absolute;
+    left: 16px;
+    width: 34px;
+    bottom: 8px;
+}
+
+.input-label {
+    font-size: 24px;
+}

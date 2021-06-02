@@ -1,15 +1,6 @@
 import React from 'react';
 import buscar from '../assets/img/icons/buscar.svg';
 
-const baseClientes = [
-    { id: 0, nombre: 'Griselda Daniela García Espinoza', numCliente: '0101 2124 10291', rfc: 'GRGE8701103K1' },
-    { id: 1, nombre: 'Laura Lucía Villa Castro', numCliente: '0101 2124 10292', rfc: 'LLVC8701103K1' },
-    { id: 2, nombre: 'Ernesto García Seoane', numCliente: '0101 2124 10293', rfc: 'EGS8701103K1' },
-    { id: 3, nombre: 'Griselda Daniela García Espinoza', numCliente: '0101 2124 10291', rfc: 'GRGE8701103K1' },
-    { id: 4, nombre: 'Laura Lucía Villa Castro', numCliente: '0101 2124 10292', rfc: 'LLVC8701103K1' },
-    { id: 5, nombre: 'Ernesto García Seoane', numCliente: '0101 2124 10293', rfc: 'EGS8701103K1' },
-];
-
 export default class BuscarCliente extends React.Component {
 
     constructor(props) {
@@ -22,8 +13,14 @@ export default class BuscarCliente extends React.Component {
                 {id: 2, nombre: 'Cotización anónima', estatus: false },
             ],
             clienteRFC: '',
-            clientes: baseClientes,
-            clientesFiltrados: baseClientes
+            clientes: [
+                { id: 0, nombre: 'Griselda Daniela García Espinoza', numCliente: '0101 2124 10291', rfc: 'GRGE8701103K1' },
+                { id: 1, nombre: 'Laura Lucía Villa Castro', numCliente: '0101 2124 10292', rfc: 'LLVC8701103K1' },
+                { id: 2, nombre: 'Ernesto García Seoane', numCliente: '0101 2124 10293', rfc: 'EGS8701103K1' },
+                { id: 3, nombre: 'Griselda Daniela García Espinoza', numCliente: '0101 2124 10291', rfc: 'GRGE8701103K1' },
+                { id: 4, nombre: 'Laura Lucía Villa Castro', numCliente: '0101 2124 10292', rfc: 'LLVC8701103K1' },
+                { id: 5, nombre: 'Ernesto García Seoane', numCliente: '0101 2124 10293', rfc: 'EGS8701103K1' },
+            ]
         }
     }
 
@@ -36,16 +33,7 @@ export default class BuscarCliente extends React.Component {
     }
 
     handleChange = (e) =>{ 
-        console.log(e.target.value);
         this.setState({clienteRFC: e.target.value});
-
-        this.setState({clientesFiltrados: this.state.clientes.filter(cliente => {
-            if (!this.state.clienteRFC) return true;
-            if (cliente.numCliente.includes(this.state.clienteRFC) || cliente.rfc.includes(this.state.clienteRFC)) {
-                return true;
-            }
-            return false;
-        })})
     }
 
     render() {
@@ -75,7 +63,13 @@ export default class BuscarCliente extends React.Component {
                 <div className="pad-extra u-fz-18" style={{marginTop: "28px"}}>Resultados relacionados tu búsqueda</div>
                 <div style={{marginTop: "17px"}} className="scroll-buscador">
                     {
-                        this.state.clientesFiltrados.map(cliente => (
+                        this.state.clientes.filter(cliente => {
+                            if (!this.state.clienteRFC) return true;
+                            if (cliente.numCliente.includes(this.state.clienteRFC) || cliente.rfc.includes(this.state.clienteRFC)) {
+                                return true;
+                            }
+                            return false;
+                        }).map(cliente => (
                             <div key={cliente.id} className="contenedor-cliente pad-extra-cliente u-fz-16">
                                 <div>{cliente.nombre}</div>
                                 <div className="u-txt-verde">{cliente.numCliente}</div>
