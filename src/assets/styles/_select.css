@@ -1,0 +1,29 @@
+.cotizador-select {
+    width: 100%;
+}
+
+.cotizador-select.MuiInput-underline:before {
+    content: unset !important;
+}
+
+.cotizador-select.MuiInput-underline:after {
+    content: unset !important;
+}
+
+.cotizador-select .MuiSelect-select:focus {
+    background-color: unset !important;
+}
+
+.MuiList-padding {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.MuiMenuItem-root {
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+}
+
+.MuiListItem-button:hover {
+    background-color: #C1DCCD !important;
+}

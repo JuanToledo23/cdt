@@ -1,0 +1,84 @@
+.contenedor-cotizador {
+    padding: 55px 70px;
+    padding-top: 160px;
+}
+
+.logo-acordion {
+    width: 10px;
+    height: 10px;
+}
+
+.contenido-gris {
+    background-color: #F6F6F6;
+    padding: 20px;
+}
+
+.u-circulo-semanas {
+    width: 27px;
+    height: 27px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #CCCDCE;
+    font-family: 'AvenirNextLTPro-Medium';
+    color: #fff;
+}
+
+.semana-activa {
+    background-color: #006341;
+}
+
+.periocidadAjustar {
+    padding: 0px 110px;
+}
+
+.periocidad {
+    width: 208px;
+}
+.ajustar {
+    width: 220px;
+}
+
+.input-bracket__cotizador {
+    border: none;
+    font-size: 20px;;
+    font-family: 'Avenir_Next_Regular';
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+}
+
+.resumen-venta {
+    
+}
+
+.titulos-resumen {
+    display: flex;
+    background-color: #F6F6F6;
+    padding: 8px 23px;
+}
+
+.titulos-resumen > div:nth-child(1) {
+    width: 50%;
+}
+.titulos-resumen > div:nth-child(2) {
+    width: 25%;
+}
+.titulos-resumen > div:nth-child(3) {
+    width: 25%;
+}
+
+.producto {
+    display: flex;
+    padding: 8px 23px;
+}
+
+.producto > div:nth-child(1) {
+    width: 50%;
+}
+.producto > div:nth-child(2) {
+    width: 25%;
+}
+.producto > div:nth-child(3) {
+    width: 25%;
+}

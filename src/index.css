@@ -9,6 +9,11 @@
 @import url('./assets/styles/_tablas.css');
 @import url('./assets/styles/_busquedaCliente.css');
 @import url('./assets/styles/_input.css');
+@import url('./assets/styles/_datePicker.css');
+@import url('./assets/styles/_botones.css');
+@import url('./assets/styles/_dialogs.css');
+@import url('./assets/styles/_cotizador.css');
+@import url('./assets/styles/_select.css');
 
 body {
   margin: 0;

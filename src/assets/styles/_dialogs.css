@@ -1,0 +1,32 @@
+.logo-dialog {
+    width: 78px;
+    height: 78px;
+}
+
+.logo-cerrar {
+    width: 16.5px;
+    height: 16.5px;
+    cursor: pointer;
+}
+
+.logo-ir {
+    width: 5px;
+    margin-left: 7px;
+    margin-top: 2px;
+}
+
+.dialog-contenido {
+    padding: 16px;
+}
+
+.u-pad-actions {
+    margin: 0 48px;
+}
+
+.MuiPaper-rounded {
+    border-radius: unset !important;
+}
+
+.contenido-dialog {
+    margin: 0 50px;
+}

@@ -55,8 +55,10 @@
 
 .input-bracket__input{
     border: none;
-    font-size: 13px;
-    min-width: 11rem;
+    font-size: 20px;
+    padding-left: 30px;
+    font-family: 'Avenir_Next_Regular';
+    width: 100%;
 }
 
 .input-bracket__input:focus{
@@ -64,7 +66,7 @@
 }
 
 .input-bracket__input::placeholder{
-    color: #333333;
+    color: #787878;
 }
 
 .input-bracket__ico{
@@ -123,4 +125,8 @@
 
 .input-label {
     font-size: 24px;
+}
+
+.input-mt {
+    margin-top: 13px;
 }

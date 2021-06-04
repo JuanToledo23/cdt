@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import Header from "./components/Header";
 import BuscarCliente from './components/Buscar-Cliente';
+import CotizadorCredito from './components/Cotizador-Credito';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         <Header />
         <div className="contenedor-componentes">
           <Switch>
+            <Route path="/cotizador-credito">
+              <CotizadorCredito />
+            </Route>
             <Route path="/">
               <BuscarCliente />
             </Route>

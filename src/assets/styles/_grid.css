@@ -10,7 +10,7 @@
 } */
 
 [class*="col-"] {
-    padding: 10px;
+    padding: 30px;
     box-sizing: border-box;
     width: 100%;
     text-align: left;

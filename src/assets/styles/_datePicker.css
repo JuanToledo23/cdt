@@ -1,0 +1,35 @@
+.custom-datepicker {
+    width: 100%;
+    margin-top: unset !important;
+    margin-bottom: unset !important;
+    padding-left: 30px !important;
+    box-sizing: border-box;
+}
+
+.custom-datepicker .MuiInput-underline:before {
+    content: unset !important;
+}
+
+.custom-datepicker .MuiInput-underline:after {
+    content: unset !important;
+}
+
+.custom-datepicker .MuiInputBase-input::placeholder {
+    font-family: 'Avenir_Next_Regular';
+    font-size: 20px;
+    color: #000000;
+}
+
+.custom-datepicker .MuiInputBase-input {
+    font-family: 'Avenir_Next_Regular';
+    font-size: 20px;
+    padding: unset;
+}
+
+.custom-datepicker .MuiFormHelperText-root {
+    display: none !important;
+}
+
+.MuiPickersDay-daySelected {
+    background-color: #00915c !important;
+}

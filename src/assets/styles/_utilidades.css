@@ -349,6 +349,9 @@
 .u-mt-3{
     margin-top: 3rem!important;
 }
+.u-mt-4{
+    margin-top: 4rem!important;
+}
 .u-mt-5{
     margin-top: 5rem!important;
 }
@@ -706,7 +709,7 @@ input.u-desac {
 }
 
 .u-txt-rojo {
-    color: #ff0d00;
+    color: #E11821;
 }
 .u-txt-rojo2 {
     color: #803336;
@@ -731,7 +734,39 @@ input.u-desac {
 .u-fz-18 {
     font-size: 18px;
 }
+.u-fz-19 {
+    font-size: 19px;
+}
+.u-fz-20 {
+    font-size: 20px;
+}
+.u-fz-21 {
+    font-size: 21px;
+}
+.u-fz-22 {
+    font-size: 22px;
+}
+.u-fz-23 {
+    font-size: 23px;
+}
 
 .u-txt-verde {
     color: #006341;
 }
+
+.u-link {
+    color: #058E60;
+    text-decoration: underline;
+    font-size: 15px;
+    font-family: 'AvenirNextLTPro-Medium';
+}
+
+.u-circulo {
+    width: 20px;
+    height: 20px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
