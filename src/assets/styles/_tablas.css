@@ -1,9 +1,14 @@
 .tabla-basica {
     width: 100%;
     border-spacing: unset;
+    padding: 0px 30px;
+    background-color: #fff;
 }
 
 .tabla-basica > tr > th {
-    border-bottom: solid 1px #000;
-    padding: 10px 0px;
+    border-bottom: solid 1px #A9A9A9;
+    padding: 24px 0px;
+}
+.tabla-basica > tr:last-of-type > th {
+    border-bottom: unset !important;
 }

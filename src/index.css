@@ -14,6 +14,7 @@
 @import url('./assets/styles/_dialogs.css');
 @import url('./assets/styles/_cotizador.css');
 @import url('./assets/styles/_select.css');
+@import url('./assets/styles/_radio.css');
 
 body {
   margin: 0;

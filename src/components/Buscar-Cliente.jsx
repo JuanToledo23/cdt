@@ -17,6 +17,8 @@ import ir_blanco from '../assets/img/icons/ir_blanco.svg';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 
+import DatosGlobales from './context/ContextData';
+
 export default class BuscarCliente extends React.Component {
 
     constructor(props) {
@@ -24,9 +26,9 @@ export default class BuscarCliente extends React.Component {
         this.cambioOpcion = this.cambioOpcion.bind(this);
         this.state = {
             tipos: [
-                {id: 0, nombre: 'Por Cliente Único', estatus: false },
+                {id: 0, nombre: 'Por Cliente Único', estatus: true },
                 {id: 1, nombre: 'Por nombre', estatus: false },
-                {id: 2, nombre: 'Cotización anónima', estatus: true },
+                {id: 2, nombre: 'Cotización anónima', estatus: false },
             ],
             clienteUnicoRFC: '',
             clientes: [
@@ -203,147 +205,166 @@ export default class BuscarCliente extends React.Component {
 
     render() {
         return <div>
-            <div className="contenedor-buscador u-bg-b">
-                <div className="tipo-busqueda">
-                    <div className="titulo-busqueda">Busqueda Cliente</div>
-                    <div className="busqueda-por">
-                        {
-                            this.state.tipos.map(element => {
-                            return (
-                                <div key={element.id} className={ element.estatus ? 'busqueda-activa' : '' } onClick={() => this.cambioOpcion(element)}>{element.nombre}</div>
-                            )
-                            })
-                        }
-                    </div>
-                </div>
-                { this.state.tipos[0].estatus ? <div>
-                    <div className="input-label mt-85 pad-extra">Ingresa los datos de tu cliente</div>
-                    <div className="buscador-contenido">
-                        <div className="row">
-                            <div className="col-12">
-                                <div className="input">
-                                    <div className="input-bracket input-bracket__buscar input-bracket--100">
-                                        <img src={buscar} alt="logo"/>
-                                        <input type="text" className="input-bracket__principal" placeholder="Cliente único o RFC" onChange={this.inputClienteRFC}/>
-                                    </div> 
+                <DatosGlobales.Consumer>
+                    {data => (
+                        <div>
+                            {data.tieneCredito ? <div className="u-flex-between" style={{paddingTop: "130px"}}>
+                                <div className="u-flex-between">
+                                    <div className="u-fz-24 u-txt-medium">Mi cliente</div>
                                 </div>
-                                { this.state.esRFC ? <div className={`u-txt-rojo pad-extra u-fz-18 ${this.state.clienteUnicoRFC.length === 12 || this.state.clienteUnicoRFC.length === 13 ? 'u-txt-verde' : ''}`} style={{marginTop: "10px"}}>El RFC debe contener 12 o 13 caracteres</div> : null}
-                                { this.state.mostrarResultados ? <div>
-                                    <div className="pad-extra u-fz-18" style={{marginTop: "28px"}}>Resultados relacionados tu búsqueda</div>
-                                    <div style={{marginTop: "17px"}} className="scroll-buscador">
+                                <Button variant="contained" className="btn-secundario" style={{width: "144px"}} disableElevation>
+                                    Cambiar cliente
+                                    <img src={ir} alt="flecha" className="logo-ir"/>
+                                </Button>
+                            </div> : null}
+                            {!data.tieneCredito ? <div className="contenedor-espacio-160"></div> : null}
+                            {data.tieneCredito ? <div className="contenedor-espacio"></div> : null}
+                            <div className="contenedor-buscador u-bg-b">
+                                {!data.tieneCredito ? 
+                                <div className="tipo-busqueda">
+                                    <div className="titulo-busqueda">Busqueda Cliente</div>
+                                    <div className="busqueda-por">
                                         {
-                                            this.state.clientesFiltrados.map(cliente => {
-                                                return (
-                                                    <div key={cliente.id} className="contenedor-cliente pad-extra-cliente u-fz-16">
-                                                        <div>{cliente.nombre}</div>
-                                                        <div className="u-txt-verde">{cliente.numCliente}</div>
-                                                    </div>
-                                                )
+                                            this.state.tipos.map(element => {
+                                            return (
+                                                <div key={element.id} className={ element.estatus ? 'busqueda-activa' : '' } onClick={() => this.cambioOpcion(element)}>{element.nombre}</div>
+                                            )
                                             })
                                         }
                                     </div>
                                 </div> : null}
-                                { this.state.noHayResultados ? <div>
-                                    <div className="pad-extra u-txt-rojo u-fz-18" style={{marginTop: "60px"}}>Cliente no encontrado</div> 
+                                
+                                { this.state.tipos[0].estatus && !data.tieneCredito ? <div>
+                                    <div className="input-label pad-extra">Ingresa los datos de tu cliente</div>
+                                    <div className="buscador-contenido">
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <div className="input">
+                                                    <div className="input-bracket input-bracket__buscar input-bracket--100">
+                                                        <img src={buscar} alt="logo"/>
+                                                        <input type="text" className="input-bracket__principal" placeholder="Cliente único o RFC" onChange={this.inputClienteRFC}/>
+                                                    </div> 
+                                                </div>
+                                                { this.state.esRFC ? <div className={`u-txt-rojo pad-extra u-fz-18 ${this.state.clienteUnicoRFC.length === 12 || this.state.clienteUnicoRFC.length === 13 ? 'u-txt-verde' : ''}`} style={{marginTop: "10px"}}>El RFC debe contener 12 o 13 caracteres</div> : null}
+                                                { this.state.mostrarResultados ? <div>
+                                                    <div className="pad-extra u-fz-18" style={{marginTop: "28px"}}>Resultados relacionados tu búsqueda</div>
+                                                    <div style={{marginTop: "17px"}} className="scroll-buscador">
+                                                        {
+                                                            this.state.clientesFiltrados.map(cliente => {
+                                                                return (
+                                                                    <div key={cliente.id} className="contenedor-cliente pad-extra-cliente u-fz-16">
+                                                                        <div>{cliente.nombre}</div>
+                                                                        <div className="u-txt-verde">{cliente.numCliente}</div>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                </div> : null}
+                                                { this.state.noHayResultados ? <div>
+                                                    <div className="pad-extra u-txt-rojo u-fz-18" style={{marginTop: "60px"}}>Cliente no encontrado</div> 
+                                                </div> : null }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> : null }
+
+                                { this.state.tipos[1].estatus && !data.tieneCredito ? <div>
+                                    <div className="input-label pad-extra">Ingresa los datos de tu cliente</div>
+                                    <div className="buscador-contenido">
+                                        <div className="row">
+                                            <div className="col-6">
+                                                <div className="input">
+                                                    <div className="input-bracket input-bracket--100">
+                                                        <input type="text" className="input-bracket__input" placeholder="Nombre (s)" id="nombre" onChange={this.handlePorNombre}/>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row input-mt">
+                                            <div className="col-6">
+                                                <div className="input">
+                                                    <div className="input-bracket input-bracket--100">
+                                                        <input type="text" className="input-bracket__input" placeholder="Apellido Paterno" id="apellidoPaterno" onChange={this.handlePorNombre}/>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                            <div className="col-6">
+                                                <div className="input">
+                                                    <div className="input-bracket input-bracket--100">
+                                                        <input type="text" className="input-bracket__input" placeholder="Apellido Materno" id="apellidoMaterno" onChange={this.handlePorNombre}/>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row input-mt">
+                                            <div className="col-6">
+                                                <div className="input">
+                                                    <div className="input-bracket input-bracket--100">
+                                                        {/* <MaterialUIPickers /> */}
+                                                            <KeyboardDatePicker
+                                                                disableToolbar
+                                                                variant="inline"
+                                                                format="dd - MM - yyyy"
+                                                                margin="normal"
+                                                                id="fecha"
+                                                                value={this.state.informacionFecha}
+                                                                onChange={this.handleDateChange}
+                                                                autoOk
+                                                                className="custom-datepicker"
+                                                                placeholder="Fecha de nacimiento"
+                                                            />
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                            <div className="col-6">
+                                                {this.state.clienteNoEncontrado ? <div className="u-txt-rojo u-fz-18" style={{paddingLeft:"33px"}}>Cliente no encontrado</div> : null}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="u-flex-end">
+                                        <Button variant="contained" className={`btn-primario ${this.state.btnBuscarCliente ? 'u-desac' : ''}`} 
+                                        style={{marginRight: "30px"}} disableElevation onClick={() => this.buscarCliente()}>Buscar cliente</Button>
+                                    </div>
+                                </div> : null }
+
+                                { this.state.tipos[2].estatus || data.tieneCredito ? <div>
+                                    <div className="input-label pad-extra">Ingresa una descripción o el SKU del producto</div>
+                                    <div className="buscador-contenido">
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <div className="input">
+                                                    <div className="input-bracket input-bracket__buscar input-bracket--100">
+                                                        <img src={buscar} alt="logo"/>
+                                                        <input type="text" className="input-bracket__principal" placeholder="Buscar por descripción o SKU" onChange={this.inputDescripcionSKU}/>
+                                                    </div> 
+                                                </div>
+                                                { this.state.mostrarResultadosProductos ? <div>
+                                                    <div className="pad-extra u-fz-18" style={{marginTop: "28px"}}>Productos relacionados con tu búsqueda</div>
+                                                    <div style={{marginTop: "17px"}} className="scroll-buscador">
+                                                        {
+                                                            this.state.productosFiltrados.map(cliente => {
+                                                                return (
+                                                                    <div key={cliente.id} className="contenedor-cliente pad-extra-cliente u-fz-16">
+                                                                        <div>{cliente.nombre}</div>
+                                                                        <div>{cliente.sku}</div>
+                                                                        <div>
+                                                                            <img src={agregar} alt="Agregar" className="icono-resultados" onClick={this.handleClickOpen}/>
+                                                                        </div>
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        }
+                                                    </div>
+                                                </div> : null}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div> : null }
                             </div>
                         </div>
-                    </div>
-                </div> : null }
-                
-                { this.state.tipos[1].estatus ? <div>
-                    <div className="input-label mt-85 pad-extra">Ingresa los datos de tu cliente</div>
-                    <div className="buscador-contenido">
-                        <div className="row">
-                            <div className="col-6">
-                                <div className="input">
-                                    <div className="input-bracket input-bracket--100">
-                                        <input type="text" className="input-bracket__input" placeholder="Nombre (s)" id="nombre" onChange={this.handlePorNombre}/>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row input-mt">
-                            <div className="col-6">
-                                <div className="input">
-                                    <div className="input-bracket input-bracket--100">
-                                        <input type="text" className="input-bracket__input" placeholder="Apellido Paterno" id="apellidoPaterno" onChange={this.handlePorNombre}/>
-                                    </div> 
-                                </div>
-                            </div>
-                            <div className="col-6">
-                                <div className="input">
-                                    <div className="input-bracket input-bracket--100">
-                                        <input type="text" className="input-bracket__input" placeholder="Apellido Materno" id="apellidoMaterno" onChange={this.handlePorNombre}/>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row input-mt">
-                            <div className="col-6">
-                                <div className="input">
-                                    <div className="input-bracket input-bracket--100">
-                                        {/* <MaterialUIPickers /> */}
-                                            <KeyboardDatePicker
-                                                disableToolbar
-                                                variant="inline"
-                                                format="dd - MM - yyyy"
-                                                margin="normal"
-                                                id="fecha"
-                                                value={this.state.informacionFecha}
-                                                onChange={this.handleDateChange}
-                                                autoOk
-                                                className="custom-datepicker"
-                                                placeholder="Fecha de nacimiento"
-                                            />
-                                    </div> 
-                                </div>
-                            </div>
-                            <div className="col-6">
-                                {this.state.clienteNoEncontrado ? <div className="u-txt-rojo u-fz-18" style={{paddingLeft:"33px"}}>Cliente no encontrado</div> : null}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="u-flex-end">
-                        <Button variant="contained" className={`btn-primario ${this.state.btnBuscarCliente ? 'u-desac' : ''}`} 
-                        style={{marginRight: "30px"}} disableElevation onClick={() => this.buscarCliente()}>Buscar cliente</Button>
-                    </div>
-                </div> : null }
-
-                { this.state.tipos[2].estatus ? <div>
-                    <div className="input-label mt-85 pad-extra">Ingresa una descripción o el SKU del producto</div>
-                    <div className="buscador-contenido">
-                        <div className="row">
-                            <div className="col-12">
-                                <div className="input">
-                                    <div className="input-bracket input-bracket__buscar input-bracket--100">
-                                        <img src={buscar} alt="logo"/>
-                                        <input type="text" className="input-bracket__principal" placeholder="Buscar por descripción o SKU" onChange={this.inputDescripcionSKU}/>
-                                    </div> 
-                                </div>
-                                { this.state.mostrarResultadosProductos ? <div>
-                                    <div className="pad-extra u-fz-18" style={{marginTop: "28px"}}>Productos relacionados con tu búsqueda</div>
-                                    <div style={{marginTop: "17px"}} className="scroll-buscador">
-                                        {
-                                            this.state.productosFiltrados.map(cliente => {
-                                                return (
-                                                    <div key={cliente.id} className="contenedor-cliente pad-extra-cliente u-fz-16">
-                                                        <div>{cliente.nombre}</div>
-                                                        <div>{cliente.sku}</div>
-                                                        <div>
-                                                            <img src={agregar} alt="Agregar" className="icono-resultados" onClick={this.handleClickOpen}/>
-                                                        </div>
-                                                    </div>
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                </div> : null}
-                            </div>
-                        </div>
-                    </div>
-                </div> : null }
-            </div>
+                    )}
+                </DatosGlobales.Consumer>
             <Dialog
                 open={this.state.dialogAgregadoCorrectamente}
                 onClose={this.handleClose}

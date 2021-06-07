@@ -16,7 +16,8 @@
 }
 
 .dialog-contenido {
-    padding: 16px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .u-pad-actions {
@@ -29,4 +30,32 @@
 
 .contenido-dialog {
     margin: 0 50px;
+}
+
+.dialog-titulo {
+    display: flex;
+    font-size: 22px;
+    font-family: 'AvenirNextLTPro-Medium';
+    align-items: center;
+}
+
+.linea-titulo {
+    border-bottom: solid 3px #000;
+    width: 100%;
+}
+
+.logo-dialog {
+    display: flex;
+}
+
+.logo-dialog > img {
+    width: 24.35px;
+} 
+
+.MuiDialog-paperWidthSm {
+    max-width: unset !important;
+} 
+
+.logo-principal-dialog {
+    width: 73px;
 }

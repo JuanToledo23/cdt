@@ -11,5 +11,13 @@
 
 .contenedor-buscador {
     padding: 55px 70px;
+    /* padding-top: 160px; */
+}
+
+.contenedor-espacio {
+    padding-top: 100px;
+}
+
+.contenedor-espacio-160 {
     padding-top: 160px;
 }

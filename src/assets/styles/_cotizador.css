@@ -48,10 +48,6 @@
     outline: none;
 }
 
-.resumen-venta {
-    
-}
-
 .titulos-resumen {
     display: flex;
     background-color: #F6F6F6;
@@ -70,7 +66,11 @@
 
 .producto {
     display: flex;
-    padding: 8px 23px;
+    padding: 17px 23px;
+}
+
+.lista-productos > .producto:nth-child(1) {
+    padding-top: 34px;
 }
 
 .producto > div:nth-child(1) {
@@ -81,4 +81,67 @@
 }
 .producto > div:nth-child(3) {
     width: 25%;
+}
+
+.texto-ahorro {
+    font-size: 10px;
+    color: #006341;
+}
+
+.texto-acredito {
+    color: #158E60;
+    font-size: 10px;
+}
+
+.icono-eliminar {
+    height: 19px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.icono-sumar {
+    width: 25%;
+    cursor: pointer;
+}
+
+.icono-restar {
+    width: 25%;
+    cursor: pointer;
+}
+
+.contador-cantidad {
+    width: 100px;
+}
+
+.subtotal {
+    background-color: #F6F6F6;
+    padding: 12px 23px;
+}
+
+.detalle-pago {
+    border: solid 1px #707070;
+}
+
+.bg-gris {
+    background-color: #F6F6F6;
+}
+
+.detalle-pago > div:nth-child(1) {
+    padding: 20px 0px;
+}
+
+.pad-14 {
+    padding: 13px 14px;
+}
+
+.pad-19 {
+    padding: 13px 19px;
+}
+
+.pad-26 {
+    padding: 5px 26px;
+}
+
+.bg-verde {
+    background-color: #C0D8D0;
 }

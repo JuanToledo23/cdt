@@ -6,6 +6,8 @@ import {
 import Header from "./components/Header";
 import BuscarCliente from './components/Buscar-Cliente';
 import CotizadorCredito from './components/Cotizador-Credito';
+import GenerarPresupuesto from './components/Generar-Presupuesto';
+import React from 'react';
 
 function App() {
   return (
@@ -14,6 +16,9 @@ function App() {
         <Header />
         <div className="contenedor-componentes">
           <Switch>
+            <Route path="/generar-presupuesto">
+              <GenerarPresupuesto />
+            </Route>
             <Route path="/cotizador-credito">
               <CotizadorCredito />
             </Route>

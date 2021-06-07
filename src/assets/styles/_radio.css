@@ -1,0 +1,48 @@
+input[type=radio]{
+    display: none;
+}
+
+.logo-radio {
+    width: 24.35px;
+    margin-left: 8px;
+}
+
+.radio-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    cursor: pointer; 
+}
+
+.borde-input {
+    width: 19px;
+    height: 19px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: transparent;
+    border: solid #000F08 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type=radio] + label .radio-circulo {
+    width: 13px;
+    height: 13px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: transparent;
+    border: solid transparent 1px;
+}
+
+input[type=radio]:checked + label .radio-circulo {
+    background: #058E60;
+}
+
+.radio-label {
+    cursor: pointer;
+    margin-left: 8px;
+}
