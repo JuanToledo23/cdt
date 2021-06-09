@@ -11,7 +11,7 @@ import React from 'react';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/DOCTOSDMAQ/2021/06Jun/REQDC8140/vista">
       <div>
         <Header />
         <div className="contenedor-componentes">

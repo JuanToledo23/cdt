@@ -66,3 +66,63 @@
     width: 19px;
     cursor: pointer;
 }
+
+.user-heart {
+    position: absolute;
+    right: 5px;
+    top: -8px;
+}
+
+.img-cliente {
+    position: absolute;
+    z-index: 3;
+    left: 7px;
+    right: 0;
+    bottom: 11px;
+    border: solid #fff 3px;
+    border-radius: 50%;
+}
+
+.img-mask {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.tipo-plan {
+    padding: 13px 30px;
+    border-bottom: solid #39B020 1px;
+    margin: 0px 20px;
+}
+
+.contenido-gris {
+    padding: 21px 52px;
+}
+
+.list-dot {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #39B020;
+    left: 70px;
+    top: 9px;
+}
+
+.contenedor-muerte {
+    padding: 27px 69px;
+    background-color: #F5F6F7;
+}
+
+.MuiIconButton-root {
+    padding: unset !important;
+}
+
+.custom-check {
+    margin-right: 15px;
+}
+
+.MuiCheckbox-colorSecondary.Mui-checked {
+    color: #39B020 !important;
+}

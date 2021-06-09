@@ -42,6 +42,20 @@ input[type=radio]:checked + label .radio-circulo {
     background: #058E60;
 }
 
+input[type=radio] + label .radio-circulo-2 {
+    width: 13px;
+    height: 13px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: transparent;
+    border: solid transparent 1px;
+}
+
+input[type=radio]:checked + label .radio-circulo-2 {
+    background: #39B020;
+}
+
 .radio-label {
     cursor: pointer;
     margin-left: 8px;

@@ -5,10 +5,14 @@
     background-color: #fff;
 }
 
-.tabla-basica > tr > th {
+.tabla-basica > tbody > tr > td {
     border-bottom: solid 1px #A9A9A9;
     padding: 24px 0px;
 }
-.tabla-basica > tr:last-of-type > th {
+.tabla-basica > thead > tr > th {
+    border-bottom: solid 1px #A9A9A9;
+    padding: 24px 0px;
+}
+.tabla-basica > tbody > tr:last-of-type > td {
     border-bottom: unset !important;
 }

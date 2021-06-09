@@ -9,10 +9,13 @@ import sms from '../assets/img/icons/sms.svg';
 import whatsapp from '../assets/img/icons/whatsapp.svg';
 import imprimiendo from '../assets/img/icons/imprimiendo.svg';
 import aviso from '../assets/img/icons/aviso.svg';
+import lapiz from '../assets/img/icons/lapiz.svg';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
+import Checkbox from '@material-ui/core/Checkbox';
 
+import DatosGlobales from './context/ContextData';
 
 export default class GenerarPresupuesto extends React.Component {
 
@@ -29,7 +32,14 @@ export default class GenerarPresupuesto extends React.Component {
             compartir: '',
             compartirPresupuesto: false,
             confirmacionImpresion: false,
-            alertaCredito: false
+            alertaCredito: false,
+            tipoCompartir: '',
+            dialogWhatsApp: false,
+            check1: false,
+            check2: false,
+            check3: false,
+            dialogSMS: false,
+            dialogCorreo: false,
         }
     }
 
@@ -58,48 +68,118 @@ export default class GenerarPresupuesto extends React.Component {
     handleCloseAlertaCredito = () => {
         this.setState({alertaCredito: false});
     };
+    handleClosedialogWhatsApp = () => {
+        this.setState({dialogWhatsApp: false});
+    };
+    handleClosedialogSMS = () => {
+        this.setState({dialogSMS: false});
+    };
+    handleClosedialogCorreo = () => {
+        this.setState({dialogCorreo: false});
+    };
     
     handleChange = (event) => {
-        // setValue(event.target.value);
         this.setState({compartir: event.target.value});
+    };
+
+    handleClickOpenTieneCredito = () => {
+        this.setState({compartirPresupuesto: false});
+        switch (this.state.tipoCompartir) {
+            case 'whatsapp':
+                this.setState({dialogWhatsApp: true});
+                break;
+            case 'sms':
+                this.setState({dialogSMS: true});
+                break;
+            case 'correo':
+                this.setState({dialogCorreo: true});
+                break;
+            case 'imprimir':
+                this.setState({compartirPresupuesto: false});
+                this.setState({confirmacionImpresion: true});
+                break;
+        
+            default:
+                break;
+        }
+        // console.log('tiene credito');
+    }
+
+    handleRadiosDialog = (e) => {
+        switch (e.target.id) {
+            case 'radio1':
+                    this.setState({tipoCompartir: 'whatsapp'});
+                break;
+            case 'radio2':
+                    this.setState({tipoCompartir: 'sms'});
+                break;
+            case 'radio3':
+                    this.setState({tipoCompartir: 'correo'});
+                break;
+            case 'radio4':
+                    this.setState({tipoCompartir: 'imprimir'});
+                break;
+        
+            default:
+                break;
+        }
+    };
+
+    handleChangeCheck1 = (event) => {
+        this.setState({check1: event.target.checked});
+    };
+    handleChangeCheck2 = (event) => {
+        this.setState({check2: event.target.checked});
+    };
+    handleChangeCheck3 = (event) => {
+        this.setState({check3: event.target.checked});
     };
 
     render() {
         return <div>
+            <DatosGlobales.Consumer>
+            {data => (
             <div className="contenedor-cotizador">
                 <div className="titulo">Generar presupuesto</div>
                 <div className="bg-gris u-mt-1" style={{padding: "21px"}}>
                     <div className="u-flex-between u-fz-18 u-txt-medium">
                         <div>Presupuesto: 8444871</div>
-                        <div className="u-link">Salir</div>
+                        <div className="u-flex u-align-center">
+                            <div className="u-link" style={{marginTop: "5px", marginRight: "8px"}}>Salir</div>
+                            <img src={ir} alt="flecha" className="logo-ir"/>
+                        </div>
                     </div>
                     <div className="u-fz-18">Enganche a pagar: $1,000</div>
                     <div className="productos">
                         <table className="tabla-basica u-mt-1">
-                            <tr>
-                                <th>Cantidad</th>
-                                <th className="u-txt-left">SKU</th>
-                                <th className="u-txt-left">Producto</th>
-                                <th>Precio</th>
-                                <th>Descuento</th>
-                                <th>Pago puntual</th>
-                                <th>Total</th>
-                            </tr>
-                            {
-                                this.state.productos.map(producto => {
-                                    return (
-                                        <tr key={producto.id}>
-                                            <th>{producto.cantidad}</th>
-                                            <th className="u-txt-left">{producto.sku}</th>
-                                            <th className="u-txt-left">{producto.producto}</th>
-                                            <th>{producto.precio}</th>
-                                            <th>{producto.descuento}</th>
-                                            <th>{producto.pagoPuntual}</th>
-                                            <th className="u-txt-right">{producto.total}</th>
-                                        </tr>
-                                    )
-                                })
-                            }
+                            <thead>
+                                <tr>
+                                    <th>Cantidad</th>
+                                    <th className="u-txt-left">SKU</th>
+                                    <th className="u-txt-left">Producto</th>
+                                    <th>Precio</th>
+                                    <th>Descuento</th>
+                                    <th>Pago puntual</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.state.productos.map(producto => {
+                                        return (
+                                            <tr key={producto.id}>
+                                                <td>{producto.cantidad}</td>
+                                                <td className="u-txt-left">{producto.sku}</td>
+                                                <td className="u-txt-left">{producto.producto}</td>
+                                                <td>{producto.precio}</td>
+                                                <td>{producto.descuento}</td>
+                                                <td>{producto.pagoPuntual}</td>
+                                                <td className="u-txt-right">{producto.total}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
                         </table>
                         <div className="u-flex-end" style={{padding: "0px 30px", marginTop: "10px"}}>
                             <div className="u-txt-right">
@@ -120,7 +200,10 @@ export default class GenerarPresupuesto extends React.Component {
                     </Button>
                 </div>
             </div>
-
+            )}
+            </DatosGlobales.Consumer>
+            <DatosGlobales.Consumer>
+            {data => (
             <Dialog
                 open={this.state.compartirPresupuesto}
                 onClose={this.handleCloseCompartirPresupuesto}
@@ -138,8 +221,8 @@ export default class GenerarPresupuesto extends React.Component {
                     <div className="u-fz-16 u-txt-medium u-mt-2">Confirma con Griselda García el medio digital para recibir su presupuesto.</div>
 
                     <div className="u-flex-between u-mt-2">
-                        <div className="u-fz-16 u-txt-medium u-desac">
-                            <input type="radio" name="grupo1" id="radio1"/>
+                        <div className={`u-fz-16 u-txt-medium ${ !data.tieneCredito ? 'u-desac' : ''}`}>
+                            <input type="radio" name="grupo1" id="radio1" onChange={this.handleRadiosDialog}/>
                             <label htmlFor="radio1" className="radio-wrapper">
                                 <div className="borde-input">
                                     <div className="radio-circulo"></div>
@@ -148,8 +231,8 @@ export default class GenerarPresupuesto extends React.Component {
                                 <span className="radio-label">WhatsApp</span>
                             </label>
                         </div>
-                        <div className="u-fz-16 u-txt-medium u-desac">
-                            <input type="radio" name="grupo1" id="radio2"/>
+                        <div className={`u-fz-16 u-txt-medium ${ !data.tieneCredito ? 'u-desac' : ''}`}>
+                            <input type="radio" name="grupo1" id="radio2" onChange={this.handleRadiosDialog}/>
                             <label htmlFor="radio2" className="radio-wrapper">
                                 <div className="borde-input">
                                     <div className="radio-circulo"></div>
@@ -158,8 +241,8 @@ export default class GenerarPresupuesto extends React.Component {
                                 <span className="radio-label">SMS</span>
                             </label>
                         </div>
-                        <div className="u-fz-16 u-txt-medium u-desac">
-                            <input type="radio" name="grupo1" id="radio3"/>
+                        <div className={`u-fz-16 u-txt-medium ${ !data.tieneCredito ? 'u-desac' : ''}`}>
+                            <input type="radio" name="grupo1" id="radio3" onChange={this.handleRadiosDialog}/>
                             <label htmlFor="radio3" className="radio-wrapper">
                                 <div className="borde-input">
                                     <div className="radio-circulo"></div>
@@ -169,7 +252,7 @@ export default class GenerarPresupuesto extends React.Component {
                             </label>
                         </div>
                         <div className="u-fz-16 u-txt-medium">
-                            <input type="radio" name="grupo1" id="radio4"/>
+                            <input type="radio" name="grupo1" id="radio4" onChange={this.handleRadiosDialog}/>
                             <label htmlFor="radio4" className="radio-wrapper">
                                 <div className="borde-input">
                                     <div className="radio-circulo"></div>
@@ -181,14 +264,21 @@ export default class GenerarPresupuesto extends React.Component {
                     </div>
 
                     <div className="u-flex-end u-mt-4">
-                        <Button variant="contained" className="btn-primario" style={{width: "172px"}} disableElevation onClick={this.handleClickOpenConfirmacionImpresion}>
+                        { !data.tieneCredito ? <Button variant="contained" className="btn-primario" style={{width: "172px"}} disableElevation onClick={this.handleClickOpenConfirmacionImpresion}>
                             Enviar
                             <img src={ir_blanco} alt="flecha" className="logo-ir"/>
-                        </Button>
+                        </Button> : null }
+                        { data.tieneCredito ? <Button variant="contained" className="btn-primario" style={{width: "172px"}} disableElevation onClick={this.handleClickOpenTieneCredito}>
+                            Enviar
+                            <img src={ir_blanco} alt="flecha" className="logo-ir"/>
+                        </Button> : null }
                     </div>
                 </div>
             </Dialog>
-
+            )}
+            </DatosGlobales.Consumer>
+            <DatosGlobales.Consumer>
+            {data => (
             <Dialog
                 open={this.state.confirmacionImpresion}
                 onClose={this.handleCloseConfirmacionImpresion}
@@ -219,7 +309,10 @@ export default class GenerarPresupuesto extends React.Component {
                     </div>
                 </div>
             </Dialog>
-            
+             )}
+             </DatosGlobales.Consumer>
+             <DatosGlobales.Consumer>
+            {data => (
             <Dialog
                 open={this.state.alertaCredito}
                 onClose={this.handleCloseAlertaCredito}
@@ -243,6 +336,262 @@ export default class GenerarPresupuesto extends React.Component {
                         </Button>
                         <Button variant="contained" className="btn-primario" style={{width: "189px"}} disableElevation onClick={this.handleCloseAlertaCredito}>
                             Originación de crédito
+                            <img src={ir_blanco} alt="flecha" className="logo-ir"/>
+                        </Button>
+                    </div>
+                </div>
+            </Dialog>
+            )}
+            </DatosGlobales.Consumer>
+            
+            <Dialog
+                open={this.state.dialogWhatsApp}
+                onClose={this.handleClosedialogWhatsApp}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <div className="dialog-contenido" style={{width: "740px"}}>
+                    <div className="u-flex-end">
+                        <img src={cerrar} className="logo-cerrar" onClick={this.handleClosedialogWhatsApp}/>
+                    </div>
+                    <div className="dialog-titulo">
+                        <div style={{width: "530px"}}>Compartido por WhatsApp</div>
+                        <div className="linea-titulo"></div>
+                    </div>
+                    <div className="row u-mt-1">
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Nombre"/>
+                                </div> 
+                            </div>
+                            <div className="u-fz-14 u-txt-medium" style={{marginTop: "8px"}}>Nombre</div>
+                        </div>
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Apellido paterno"/>
+                                </div> 
+                            </div>
+                            <div className="u-flex u-align-center" style={{marginTop: "8px"}}>
+                                <Checkbox
+                                    checked={this.state.check1}
+                                    onChange={this.handleChangeCheck1}
+                                    className="custom-check"
+                                />
+                                <div className="u-fz-14 u-txt-medium">Solo apellido paterno</div>
+                            </div>
+                        </div>
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Apellido materno"/>
+                                </div> 
+                            </div>
+                            <div className="u-flex u-align-center" style={{marginTop: "8px"}}>
+                                <Checkbox
+                                    checked={this.state.check2}
+                                    onChange={this.handleChangeCheck2}
+                                    className="custom-check"
+                                />
+                                <div className="u-fz-14 u-txt-medium">Solo apellido materno</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row u-mt-2">
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Teléfono celular"/>
+                                </div> 
+                            </div>
+                            <div className="u-fz-14 u-txt-medium" style={{marginTop: "8px"}}>Teléfono celular (10 dígitos)</div>
+                        </div>
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div>
+                                <img src={lapiz} className="logo-lapiz" />
+                            </div>
+                            <div className="u-flex u-align-center" style={{marginTop: "12px"}}>
+                                <Checkbox
+                                    checked={this.state.check3}
+                                    onChange={this.handleChangeCheck3}
+                                    className="custom-check"
+                                />
+                                <div className="u-fz-14 u-txt-medium">Contacto secundario</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="u-flex-end u-mt-4">
+                        <div className="u-link">Enviar por otro medio</div>
+                        <Button variant="contained" className="btn-primario u-ml-2" style={{width: "189px"}} disableElevation>
+                            Enviar
+                            <img src={ir_blanco} alt="flecha" className="logo-ir"/>
+                        </Button>
+                    </div>
+                </div>
+            </Dialog>
+
+            <Dialog
+                open={this.state.dialogSMS}
+                onClose={this.handleClosedialogSMS}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <div className="dialog-contenido" style={{width: "740px"}}>
+                    <div className="u-flex-end">
+                        <img src={cerrar} className="logo-cerrar" onClick={this.handleClosedialogSMS}/>
+                    </div>
+                    <div className="dialog-titulo">
+                        <div style={{width: "530px"}}>Compartido por SMS</div>
+                        <div className="linea-titulo"></div>
+                    </div>
+                    <div className="row u-mt-1">
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Nombre"/>
+                                </div> 
+                            </div>
+                            <div className="u-fz-14 u-txt-medium" style={{marginTop: "8px"}}>Nombre</div>
+                        </div>
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Apellido paterno"/>
+                                </div> 
+                            </div>
+                            <div className="u-flex u-align-center" style={{marginTop: "8px"}}>
+                                <Checkbox
+                                    checked={this.state.check1}
+                                    onChange={this.handleChangeCheck1}
+                                    className="custom-check"
+                                />
+                                <div className="u-fz-14 u-txt-medium">Solo apellido paterno</div>
+                            </div>
+                        </div>
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Apellido materno"/>
+                                </div> 
+                            </div>
+                            <div className="u-flex u-align-center" style={{marginTop: "8px"}}>
+                                <Checkbox
+                                    checked={this.state.check2}
+                                    onChange={this.handleChangeCheck2}
+                                    className="custom-check"
+                                />
+                                <div className="u-fz-14 u-txt-medium">Solo apellido materno</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row u-mt-2">
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Teléfono celular"/>
+                                </div> 
+                            </div>
+                            <div className="u-fz-14 u-txt-medium" style={{marginTop: "8px"}}>Teléfono celular (10 dígitos)</div>
+                        </div>
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div>
+                                <img src={lapiz} className="logo-lapiz" />
+                            </div>
+                            <div className="u-flex u-align-center" style={{marginTop: "12px"}}>
+                                <Checkbox
+                                    checked={this.state.check3}
+                                    onChange={this.handleChangeCheck3}
+                                    className="custom-check"
+                                />
+                                <div className="u-fz-14 u-txt-medium">Contacto secundario</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="u-flex-end u-mt-4">
+                        <div className="u-link">Enviar por otro medio</div>
+                        <Button variant="contained" className="btn-primario u-ml-2" style={{width: "189px"}} disableElevation>
+                            Enviar
+                            <img src={ir_blanco} alt="flecha" className="logo-ir"/>
+                        </Button>
+                    </div>
+                </div>
+            </Dialog>
+
+            <Dialog
+                open={this.state.dialogCorreo}
+                onClose={this.handleClosedialogCorreo}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <div className="dialog-contenido" style={{width: "740px"}}>
+                    <div className="u-flex-end">
+                        <img src={cerrar} className="logo-cerrar" onClick={this.handleClosedialogCorreo}/>
+                    </div>
+                    <div className="dialog-titulo">
+                        <div style={{width: "800px"}}>Compartido por correo electrónico</div>
+                        <div className="linea-titulo"></div>
+                    </div>
+                    <div className="row u-mt-1">
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Nombre"/>
+                                </div> 
+                            </div>
+                            <div className="u-fz-14 u-txt-medium" style={{marginTop: "8px"}}>Nombre</div>
+                        </div>
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Apellido paterno"/>
+                                </div> 
+                            </div>
+                            <div className="u-flex u-align-center" style={{marginTop: "8px"}}>
+                                <Checkbox
+                                    checked={this.state.check1}
+                                    onChange={this.handleChangeCheck1}
+                                    className="custom-check"
+                                />
+                                <div className="u-fz-14 u-txt-medium">Solo apellido paterno</div>
+                            </div>
+                        </div>
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Apellido materno"/>
+                                </div> 
+                            </div>
+                            <div className="u-flex u-align-center" style={{marginTop: "8px"}}>
+                                <Checkbox
+                                    checked={this.state.check2}
+                                    onChange={this.handleChangeCheck2}
+                                    className="custom-check"
+                                />
+                                <div className="u-fz-14 u-txt-medium">Solo apellido materno</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row u-mt-2">
+                        <div className="col-8" style={{padding: "10px"}}>
+                            <div className="input">
+                                <div className="input-bracket input-bracket--100">
+                                    <input type="text" className="input-bracket__input-2" placeholder="Correo electrónico"/>
+                                </div> 
+                            </div>
+                            <div className="u-fz-14 u-txt-medium" style={{marginTop: "8px"}}>ej.nombre@correo.com</div>
+                        </div>
+                        <div className="col-4" style={{padding: "10px"}}>
+                            <div>
+                                <img src={lapiz} className="logo-lapiz" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className="u-flex-end u-mt-4">
+                        <div className="u-link">Enviar por otro medio</div>
+                        <Button variant="contained" className="btn-primario u-ml-2" style={{width: "189px"}} disableElevation>
+                            Enviar
                             <img src={ir_blanco} alt="flecha" className="logo-ir"/>
                         </Button>
                     </div>

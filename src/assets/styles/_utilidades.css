@@ -320,11 +320,11 @@
 }
 
 .u-ml-1{
-    margin-left: 1rem;
+    margin-left: 1rem !important;
 }
 
 .u-ml-2{
-    margin-left: 2rem;
+    margin-left: 2rem !important;
 }
 .u-mt-23px {
     margin-top: 23px;
@@ -587,6 +587,9 @@ input.u-desac {
 .u-position-r {
     position: relative;
 }
+.u-position-a {
+    position: absolute;
+}
 
 .u-cursor-p {
     cursor: pointer;
@@ -758,6 +761,9 @@ input.u-desac {
 
 .u-txt-verde {
     color: #006341;
+}
+.u-txt-limon {
+    color: #35B11E;
 }
 
 .u-link {
