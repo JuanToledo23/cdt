@@ -1,5 +1,5 @@
 import React from 'react';
-    var DatosGlobales = React.createContext({
+    let DatosGlobales = React.createContext({
         tieneCredito: true,
         nombre: 'juan'
     });

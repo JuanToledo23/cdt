@@ -18,6 +18,7 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 
 import DatosGlobales from './context/ContextData';
+import DatosCliente from './Datos-Cliente';
 
 export default class BuscarCliente extends React.Component {
 
@@ -208,17 +209,9 @@ export default class BuscarCliente extends React.Component {
                 <DatosGlobales.Consumer>
                     {data => (
                         <div>
-                            {data.tieneCredito ? <div className="u-flex-between" style={{paddingTop: "130px"}}>
-                                <div className="u-flex-between">
-                                    <div className="u-fz-24 u-txt-medium">Mi cliente</div>
-                                </div>
-                                <Button variant="contained" className="btn-secundario" style={{width: "144px"}} disableElevation>
-                                    Cambiar cliente
-                                    <img src={ir} alt="flecha" className="logo-ir"/>
-                                </Button>
-                            </div> : null}
+                            {data.tieneCredito ? 
+                            <DatosCliente /> : null}
                             {!data.tieneCredito ? <div className="contenedor-espacio-160"></div> : null}
-                            {data.tieneCredito ? <div className="contenedor-espacio"></div> : null}
                             <div className="contenedor-buscador u-bg-b">
                                 {!data.tieneCredito ? 
                                 <div className="tipo-busqueda">
@@ -235,7 +228,7 @@ export default class BuscarCliente extends React.Component {
                                 </div> : null}
                                 
                                 { this.state.tipos[0].estatus && !data.tieneCredito ? <div>
-                                    <div className="input-label pad-extra">Ingresa los datos de tu cliente</div>
+                                    <div className="input-label pad-extra mt-85">Ingresa los datos de tu cliente</div>
                                     <div className="buscador-contenido">
                                         <div className="row">
                                             <div className="col-12">
@@ -270,7 +263,7 @@ export default class BuscarCliente extends React.Component {
                                 </div> : null }
 
                                 { this.state.tipos[1].estatus && !data.tieneCredito ? <div>
-                                    <div className="input-label pad-extra">Ingresa los datos de tu cliente</div>
+                                    <div className="input-label pad-extra mt-85">Ingresa los datos de tu cliente</div>
                                     <div className="buscador-contenido">
                                         <div className="row">
                                             <div className="col-6">
@@ -329,7 +322,7 @@ export default class BuscarCliente extends React.Component {
                                 </div> : null }
 
                                 { this.state.tipos[2].estatus || data.tieneCredito ? <div>
-                                    <div className="input-label pad-extra">Ingresa una descripción o el SKU del producto</div>
+                                    <div className="input-label pad-extra mt-85">Ingresa una descripción o el SKU del producto</div>
                                     <div className="buscador-contenido">
                                         <div className="row">
                                             <div className="col-12">
