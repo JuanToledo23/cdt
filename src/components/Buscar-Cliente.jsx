@@ -72,7 +72,7 @@ export default class BuscarCliente extends React.Component {
     }
 
     inputClienteRFC = (e) => { 
-        this.setState({clienteUnicoRFC: e.target.value}, () => { this.updateFilter() });
+        this.setState({clienteUnicoRFC: e.target.value.toUpperCase()}, () => { this.updateFilter() });
     }
 
     updateFilter() {
@@ -160,7 +160,7 @@ export default class BuscarCliente extends React.Component {
     }
 
     inputDescripcionSKU = (e) => { 
-        this.setState({descripcionSKU: e.target.value}, () => { this.updateFilterDescripcionSKU() });
+        this.setState({descripcionSKU: e.target.value.toUpperCase()}, () => { this.updateFilterDescripcionSKU() });
     }
 
     updateFilterDescripcionSKU() {
