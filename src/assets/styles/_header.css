@@ -67,8 +67,6 @@
 }
 
 .shadow {
-    box-shadow: 1px 9px 29px -12px rgba(125,125,125,0.75);
-    box-shadow: 1px 9px 29px -12px rgb(125 125 125 / 75%);
     z-index: 20;
     position: fixed;
     width: 100%;

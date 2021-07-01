@@ -13,6 +13,9 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import Dialog from '@material-ui/core/Dialog';
 
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Typography from '@material-ui/core/Typography';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 export default class CotizadorCredito extends React.Component {
 
@@ -75,6 +78,7 @@ export default class CotizadorCredito extends React.Component {
             { id: this.state.listaProductos.length + 1, nombre: 'Seguro Vidamax', sku: '1005441', precio: this.state.tipoPlanSeguro, ahorro: '', pagoSemanal: this.state.tipoPlanSeguro, cantidad: 1 }
         );
         this.setState({listaProductos: this.state.listaProductos});
+        this.setState({dialogSeguro: false});
     };
 
     cambioSemanas(e) {
@@ -108,6 +112,14 @@ export default class CotizadorCredito extends React.Component {
 
     render() {
         return <div>
+            <div className="contenedor-titulo u-flex-center-y contenedor-b">
+                <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+                    <Link color="inherit" to={'/'}>
+                    Busqueda de cliente
+                    </Link>
+                    <Typography color="textPrimary">Cotizador</Typography>
+                </Breadcrumbs>
+            </div>
             <div className="contenedor-cotizador">
                 <div className="u-flex-end">
                     <Button variant="contained" className="btn-secundario" style={{width: "189px"}} disableElevation onClick={this.handleClose}>
