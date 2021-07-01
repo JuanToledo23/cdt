@@ -20,6 +20,10 @@ import Dialog from '@material-ui/core/Dialog';
 import DatosGlobales from './context/ContextData';
 import DatosCliente from './Datos-Cliente';
 
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Typography from '@material-ui/core/Typography';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+
 export default class BuscarCliente extends React.Component {
 
     constructor(props) {
@@ -206,6 +210,14 @@ export default class BuscarCliente extends React.Component {
 
     render() {
         return <div>
+                <div className="contenedor-titulo u-flex-center-y contenedor-b">
+                    <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+                        {/* <Link color="inherit" to={'/'}>
+                        Busqueda de cliente
+                        </Link> */}
+                        <Typography color="textPrimary">Busqueda de cliente</Typography>
+                    </Breadcrumbs>
+                </div>
                 <DatosGlobales.Consumer>
                     {data => (
                         <div>

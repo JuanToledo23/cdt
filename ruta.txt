@@ -1,0 +1,3 @@
+  package = "homepage": "http://portal.colaboracionsimba.net/DOCTOSDMAQ/2021/06Jun/REQDC8140/vista/",
+
+app router = basename="/DOCTOSDMAQ/2021/06Jun/REQDC8140/vista"

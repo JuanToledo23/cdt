@@ -2,9 +2,26 @@ import React from 'react';
 import flecha from '../assets/img/icons/flecha.svg'
 import menuHamburguesa from '../assets/img/icons/menu_hamburguesa.svg'
 import userPic from '../assets/img/88838.jpg';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+/* const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+    },
+},
+})); */
+
+function handleClick(event) {
+event.preventDefault();
+console.info('You clicked a breadcrumb.');
+}   
 
 export default class Header extends React.Component {
+    
     render() {
+/*         const classes = useStyles(); */
         return <div>
             <div className="shadow u-bg-b">
                 <div className="u-flex-between contenedor-header u-flex-center-y">
@@ -26,9 +43,6 @@ export default class Header extends React.Component {
                         </div>
                         <div className="user-pic" style={{ backgroundImage: `url(${userPic})` }}></div>
                     </div>
-                </div>
-                <div className="contenedor-titulo u-flex-center-y">
-                    <div>Busqueda de cliente</div>
                 </div>
             </div>
         </div>

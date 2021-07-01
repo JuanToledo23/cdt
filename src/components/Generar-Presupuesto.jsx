@@ -10,12 +10,18 @@ import whatsapp from '../assets/img/icons/whatsapp.svg';
 import imprimiendo from '../assets/img/icons/imprimiendo.svg';
 import aviso from '../assets/img/icons/aviso.svg';
 import lapiz from '../assets/img/icons/lapiz.svg';
+import check from '../assets/img/icons/check.svg';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import DatosGlobales from './context/ContextData';
+
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Typography from '@material-ui/core/Typography';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { Link } from "react-router-dom";
 
 export default class GenerarPresupuesto extends React.Component {
 
@@ -40,6 +46,7 @@ export default class GenerarPresupuesto extends React.Component {
             check3: false,
             dialogSMS: false,
             dialogCorreo: false,
+            envioExitoso: false
         }
     }
 
@@ -62,7 +69,8 @@ export default class GenerarPresupuesto extends React.Component {
 
     handleClickOpenAlertaCredito = () => {
         this.setState({confirmacionImpresion: false});
-        this.setState({alertaCredito: true});
+        /* this.setState({alertaCredito: true}); */
+        this.setState({envioExitoso: true});
     };
     
     handleCloseAlertaCredito = () => {
@@ -76,6 +84,9 @@ export default class GenerarPresupuesto extends React.Component {
     };
     handleClosedialogCorreo = () => {
         this.setState({dialogCorreo: false});
+    };
+    handleClosedialogEvioExitoso= () => {
+        this.setState({envioExitoso: false});
     };
     
     handleChange = (event) => {
@@ -137,6 +148,17 @@ export default class GenerarPresupuesto extends React.Component {
 
     render() {
         return <div>
+                    <div className="contenedor-titulo u-flex-center-y contenedor-b">
+                        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+                            <Link color="inherit" to={'/'}>
+                            Busqueda de cliente
+                            </Link>
+                            <Link color="inherit" to={'/cotizador-credito'}>
+                            Cotizador
+                            </Link>
+                            <Typography color="textPrimary">Generar presupuesto</Typography>
+                        </Breadcrumbs>
+                    </div>
             <DatosGlobales.Consumer>
             {data => (
             <div className="contenedor-cotizador">
@@ -592,6 +614,32 @@ export default class GenerarPresupuesto extends React.Component {
                         <div className="u-link">Enviar por otro medio</div>
                         <Button variant="contained" className="btn-primario u-ml-2" style={{width: "189px"}} disableElevation>
                             Enviar
+                            <img src={ir_blanco} alt="flecha" className="logo-ir"/>
+                        </Button>
+                    </div>
+                </div>
+            </Dialog>
+
+            <Dialog
+                open={this.state.envioExitoso}
+                onClose={this.handleClosedialogEvioExitoso}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <div className="dialog-contenido" style={{width: "515px"}}>
+                    <div className="u-flex-end">
+                        <img src={cerrar} className="logo-cerrar" onClick={this.handleClosedialogEvioExitoso}/>
+                    </div>
+                    <div className="u-flex-column-center u-align-center u-mt-1">
+                        <img src={check} className="logo-principal-dialog"/>
+                        <strong className="u-mt-4 u-txt-center u-fz-22 u-txt-medium">Envío de presupuesto exitoso</strong>
+                        <br/><br/>
+                        <div>El presupuesto <strong>8444871</strong> fue enviado correctamente.</div>
+                    </div>
+                    <div className="u-flex-center u-mt-4">
+                        <div className="u-link u-cursor-pointer u-mr-2" onClick={this.handleClosedialogEvioExitoso}>Enviar por otro medio</div>
+                        <Button variant="contained" className="btn-primario" style={{width: "189px"}} disableElevation onClick={this.handleClosedialogEvioExitoso}>
+                            Continuar
                             <img src={ir_blanco} alt="flecha" className="logo-ir"/>
                         </Button>
                     </div>

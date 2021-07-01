@@ -21,3 +21,15 @@
 .contenedor-espacio-160 {
     padding-top: 160px;
 }
+
+.contenedor-b {
+    z-index: 20;
+    position: fixed;
+    background-color: #fff;
+    top: 70px;
+    width: 100%;
+    box-shadow: 1px 9px 29px -12px rgba(125,125,125,0.75);
+    box-shadow: 1px 9px 29px -12px rgb(125 125 125 / 75%);
+    margin: 0px -30px;
+    padding: 0px 30px;
+}
