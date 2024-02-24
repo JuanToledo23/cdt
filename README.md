@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Cotizador de Credito Banco Azteca
+
+## Maquetado "Cotizador de Credito Banco Azteca" interactivo Grupo Salinas
+
+Utilizar version de [NodeJS 15.14.0](https://nodejs.org/dist/v15.14.0/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
